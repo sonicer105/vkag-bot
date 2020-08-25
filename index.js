@@ -6,11 +6,11 @@ const presence = 'DnD';
 
 // Here we are using regular expression to match users to a role name
 const rolesToAssign = {
-    '^[0-9]': '1-9',
-    '^[a-fA-F]': 'A-F',
-    '^[g-mG-M]': 'G-M',
-    '^[n-sN-S]': 'N-S',
-    '^[t-zT-Z]': 'T-Z'
+    '^[0-9]$': '1-9',
+    '^[a-fA-F]$': 'A-F',
+    '^[g-mG-M]$': 'G-M',
+    '^[n-sN-S]$': 'N-S',
+    '^[t-zT-Z]$': 'T-Z'
 };
 
 // Get an instance of the client
@@ -38,6 +38,7 @@ function tryLogin() {
 function assignRole(member) {
     // Use the nickname if it exists, otherwise, stick with the username
     let name = (member.nickname != null) ? member.nickname : member.user.username;
+    name = name.slice(0,1); // We only want the first letter
 
     let rolesToRemove = [];
     let roleToAdd = '';
@@ -57,8 +58,12 @@ function assignRole(member) {
 
         }
     }
-    member.roles.remove(rolesToRemove); // Remove our list of roles
-    member.roles.add(roleToAdd); // Add our one role
+    if(rolesToRemove.length > 0) {
+        member.roles.remove(rolesToRemove); // Remove our list of roles
+    }
+    if(roleToAdd.length > 0) {
+        member.roles.add(roleToAdd); // Add our one role
+    }
 }
 
 /**

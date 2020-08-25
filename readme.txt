@@ -1,5 +1,6 @@
 Bot I made for the Vancouver Kinky and Geeky Discord server. It assigns roles based on the first letter of your username
-or nickname on the guild when you join it or update your username/nick on the server.
+or nickname on the guild when you join it or update your username/nick on the server. Don't judge me too harshly for
+this. I have never used Discord.JS before and I made this in 3 hours.
 
 REQUIREMENTS
 
